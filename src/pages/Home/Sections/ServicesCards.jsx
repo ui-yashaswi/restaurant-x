@@ -88,7 +88,7 @@ function ServicesCards() {
           return (
             <div
               key={index}
-              className="lg:w-[26.5vw] w-full h-full card shadow-lg rounded-xl"
+              className="lg:w-[26vw] w-full h-full card shadow-lg rounded-xl"
             >
               {/* Heading */}
               <div
