@@ -2,8 +2,8 @@ import React from "react";
 import { GoLocation } from "react-icons/go";
 import { FaPhone } from "react-icons/fa6";
 import { GoMail } from "react-icons/go";
-import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import logo from "/images/BV-Logo.png";
@@ -43,7 +43,7 @@ const Footer = () => {
               subscribe
             </button>
           </div>
-          <div className="textcontent flex items-center justify-center  gap-20 ">
+          <div className="textcontent flex items-start justify-center  gap-20 ">
             <div className="flex items-start  gap-2 flex-col justify-start ">
               <h1 className="text-lg font-semibold">INFORMATION</h1>
               <h1>Customer Service</h1>
@@ -53,7 +53,7 @@ const Footer = () => {
               <h1 className="text-lg font-semibold">CATERING</h1>
               <h1>Hyderabad</h1>
               <h1>Secundrabad</h1>
-              <h1>Object tracking</h1>
+              <h1>Order tracking</h1>
             </div>
             <div className="flex items-start gap-2 flex-col   ">
               <h1 className="text-lg font-semibold">IMPORTANT LINKS</h1>
@@ -63,13 +63,13 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex gap-20 items-center my-12 justify-start">
-            <h2>Follow us</h2>
-            <div className="flex gap-4 items-center justify-center text-xl">
-              <AiFillInstagram className="text-pink-600" />
-              <FaFacebook className="text-blue-300" />
-              <FaTwitter className="text-blue-400" />
-              <FaYoutube className="text-red-500" />
+          <div className="flex gap-10 items-center my-12 justify-start">
+            <h2 className="text-lg font-semibold">Follow us</h2>
+            <div className="flex gap-2 items-center justify-center text-xl">
+              <FaInstagram className="text-white p-1 rounded-full bg-[#E24A4C] text-3xl border-[#E24A4C]" />
+              <FaFacebook className="text-[#1877F2] bg-white rounded-full border border-[#1877F2] text-3xl" />
+              <FaTwitter className="text-white text-3xl p-1 rounded-full border border-[#55ACEE] bg-[#55ACEE]" />
+              <FaYoutube className="text-white bg-[#E24A4C] text-3xl p-1 rounded-full border border-[#E24A4C]" />
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import block2 from "/images/block2.jpg";
 import block3 from "/images/block3.jpg";
 const Latestblogs = () => {
   return (
-    <div className="mb-20">
+    <div className="">
       <div className="w-full h-full flex flex-col justify-center gap-2 items-center">
         <h1 className="text-3xl font-semibold">Latest Blogs</h1>
         <p className="text-gray-500 font-lg">
