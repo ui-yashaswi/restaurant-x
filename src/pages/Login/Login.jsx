@@ -22,7 +22,8 @@ const Login = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     dispatch(login(values));
-    setSubmitting(false);
+    console.log(values);
+    // setSubmitting(false);
   };
 
   return (
