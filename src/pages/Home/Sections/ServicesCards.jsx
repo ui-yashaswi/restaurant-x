@@ -2,7 +2,7 @@ import React from "react";
 import plate1 from "/images/plate1.png";
 import plate2 from "/images/plate2.png";
 import plate3 from "/images/plate3.png";
-
+import Button from "../../../components/Button.jsx";
 const cardsData = [
   {
     title: "Simple Plate 180rs/-",
@@ -84,7 +84,7 @@ function ServicesCards() {
           return (
             <div
               key={index}
-              className="lg:w-[26vw] w-full h-full card shadow-lg rounded-xl"
+              className="lg:w-[26vw] w-full h-full card   shadow-md rounded-xl"
             >
               {/* Heading */}
               <div
@@ -131,12 +131,12 @@ function ServicesCards() {
 
               {/* Buttons */}
               <div className="flex items-center justify-center  gap-4 py-3">
-                <button className="text-white bg-[#396d5c] font-semibold text-lg lg:px-12 lg:py-3 py-2 px-6 rounded-3xl">
-                  Proceed
-                </button>
-                <button className="lg:w-40 lg:px-0 lg:py-3 py-2 px-4 text-[#396d5c] font-semibold rounded-3xl border-2 border-[#396d5c]">
-                  What's App
-                </button>
+                <Button
+                  text={"poceed now"}
+                  className={"bg-[#396d5c] text-white"}
+                />
+
+                <Button className="">What's App</Button>
               </div>
             </div>
           );

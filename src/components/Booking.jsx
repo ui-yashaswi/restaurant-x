@@ -3,7 +3,7 @@ import { LuMapPin } from "react-icons/lu";
 import BV from "/images/BV-Logo.png";
 import { FaPhone, FaPhoneAlt } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
-import FormData from "./FormData.jsx";
+import Catering from "../pages/Home/Sections/Catering.jsx";
 import { MdOutlineMail } from "react-icons/md";
 
 const Booking = () => {
@@ -45,7 +45,7 @@ const Booking = () => {
           </div>
         </div>
         <div className="flex flex-col order-1 lg:order-2 ">
-          <FormData />
+          <Catering />
         </div>
       </div>
     </div>

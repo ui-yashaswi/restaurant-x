@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://liveagainhealthy.in/",
+  baseURL: "http://localhost:4000",
 });

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -7,10 +9,30 @@ import {
   FaCalendarAlt,
   FaUsers,
 } from "react-icons/fa";
+import { submitEventForm } from "../../../rtk/slices/homeSlice";
+import toast from "react-hot-toast";
 
 function Events() {
+  const { successMessage, errorMessage } = useSelector((slice) => slice.home);
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+    }
+  }, [successMessage, errorMessage]);
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
+  async function sendToWhatsapp(values) {
+    try {
+      await axios.post("http://localhost:4400/send-whatsapp", values);
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.log(error.message);
+      // alert("Failed to send message----->");
+    }
+  }
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -31,10 +53,13 @@ function Events() {
       eventDate: Yup.string().required("Required"),
       people: Yup.number().min(1, "Must be at least 1").required("Required"),
       message: Yup.string()
-        .matches(/\b\w+\b(?:\s+\b\w+\b){29,39}/, "Must be 30-40 words")
+        // .matches(/\b\w+\b(?:\s+\b\w+\b){10,39}/, "Must be 10-40 words")
         .required("Required"),
     }),
     onSubmit: (values, { resetForm }) => {
+      console.log(values);
+      sendToWhatsapp(values);
+      dispatch(submitEventForm(values));
       setLoading(true);
       setTimeout(() => {
         console.log("Form Submitted:", values);
@@ -48,13 +73,16 @@ function Events() {
     <div className="flex flex-col items-center bg-[#F8FAF9] py-6 px-10 md:px-10 lg:px-20">
       <div className="w-full h-full flex flex-col gap-6 items-center">
         <p className="text-4xl font-medium">Event Details</p>
-        <p className="text-zinc-500 text-center">
+        <p className="text-zinc-500 text-center ">
           Please fill in the event details & size of the order
         </p>
       </div>
 
       <div className="w-full max-w-2xl lg:mt-10 lg:p-6 rounded-xl">
-        <form onSubmit={formik.handleSubmit} className="space-y-4">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="space-y-4  text-gray-800"
+        >
           {/* Full Name & Time */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -65,7 +93,7 @@ function Events() {
                 type="text"
                 name="fullName"
                 placeholder="Enter your name"
-                className="w-full text-[#a4a4a4] p-3 border-2 border-[#7D7E7E] bg-white rounded"
+                className="w-full p-3 border-2 border-[#7D7E7E] bg-white rounded"
                 {...formik.getFieldProps("fullName")}
               />
               {formik.touched.fullName && formik.errors.fullName && (
@@ -82,10 +110,10 @@ function Events() {
                   type="text"
                   name="time"
                   placeholder="Enter event time"
-                  className="w-full p-3 text-[#a4a4a4] border-2 border-[#7D7E7E] bg-white rounded pr-10"
+                  className="w-full p-3  border-2 border-[#7D7E7E] bg-white rounded pr-10"
                   {...formik.getFieldProps("time")}
                 />
-                <FaClock className="absolute right-3 top-3 text-[#6B7280]" />
+                <FaClock className="absolute right-3 top-4 text-[#6B7280]" />
               </div>
               {formik.touched.time && formik.errors.time && (
                 <p className="text-red-500 text-sm">{formik.errors.time}</p>
@@ -103,7 +131,7 @@ function Events() {
                 type="text"
                 name="contact"
                 placeholder="Enter your number"
-                className="w-full text-[#a4a4a4] p-3 border-2 border-[#7D7E7E] bg-white rounded"
+                className="w-full  p-3 border-2 border-[#7D7E7E] bg-white rounded"
                 {...formik.getFieldProps("contact")}
               />
               {formik.touched.contact && formik.errors.contact && (
@@ -114,15 +142,15 @@ function Events() {
               <label className="block font-semibold text-[#6B7280] mb-2">
                 Location
               </label>
-              <div className="relative">
+              <div className="relative ">
                 <input
                   type="text"
                   name="location"
                   placeholder="Enter location"
-                  className="w-full text-[#a4a4a4] p-3 border-2 border-[#7D7E7E] bg-white rounded pr-10"
+                  className="w-full  p-3 border-2 border-[#7D7E7E] bg-white rounded pr-10"
                   {...formik.getFieldProps("location")}
                 />
-                <FaMapMarkerAlt className="absolute right-3 top-3 text-[#6B7280]" />
+                <FaMapMarkerAlt className="absolute right-3 top-5 text-[#6B7280]" />
               </div>
               {formik.touched.location && formik.errors.location && (
                 <p className="text-red-500 text-sm">{formik.errors.location}</p>
@@ -141,10 +169,10 @@ function Events() {
                   type="text"
                   name="eventDate"
                   placeholder="Select your event date"
-                  className="w-full text-[#a4a4a4] p-3 border-2 border-[#7D7E7E] bg-white rounded"
+                  className="w-full  p-3 border-2 border-[#7D7E7E] bg-white rounded"
                   {...formik.getFieldProps("eventDate")}
                 />
-                <FaCalendarAlt className="absolute right-3 top-3 text-[#6B7280]" />
+                <FaCalendarAlt className="absolute right-3 top-4 text-[#6B7280]" />
               </div>
               {formik.touched.eventDate && formik.errors.eventDate && (
                 <p className="text-red-500 text-sm">
@@ -162,10 +190,10 @@ function Events() {
                   type="number"
                   name="people"
                   placeholder="How many people will eat?"
-                  className="w-full text-[#a4a4a4] p-3 border-2 border-[#7D7E7E] bg-white rounded pr-10"
+                  className="w-full  p-3 border-2 border-[#7D7E7E] bg-white rounded pr-10"
                   {...formik.getFieldProps("people")}
                 />
-                <FaUsers className="absolute right-3 top-3 text-[#6B7280]" />
+                <FaUsers className="absolute right-3 top-4 text-[#6B7280]" />
               </div>
               {formik.touched.people && formik.errors.people && (
                 <p className="text-red-500 text-sm">{formik.errors.people}</p>
@@ -182,7 +210,7 @@ function Events() {
               name="message"
               rows="3"
               placeholder="Write a message between 30-40 words..."
-              className="w-full text-[#a4a4a4] p-3 border-2 border-[#7D7E7E] bg-white rounded"
+              className="w-full  p-3 border-2 border-[#7D7E7E] bg-white rounded"
               {...formik.getFieldProps("message")}
             ></textarea>
             {formik.touched.message && formik.errors.message && (

@@ -29,7 +29,7 @@ const Latestblogs = () => {
             btn: "Read more",
           },
         ].map((item, idx) => (
-          <div className="flex flex-col gap-2">
+          <div key={idx} className="flex flex-col gap-2">
             <div className="lg:w-[27vw] h-[27vh]   ">
               <img
                 className="w-full h-full object-cover rounded-lg bg-auto   "

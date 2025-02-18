@@ -14,7 +14,7 @@ function Banner() {
       </div>
 
       {/* Overlay */}
-      <div className="absolute top-40 left-0 w-full h-34  bg-[#2F291F] opacity-60"></div>
+      <div className="absolute top-50 left-0 w-full h-34  bg-[#2F291F] opacity-60"></div>
 
       {/* Text (Separate from Overlay) */}
       <div className="absolute inset-0 bottom-18 gap-4 left-0 flex flex-col justify-center items-center">

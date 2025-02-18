@@ -16,7 +16,7 @@ const Home = () => {
       <SmNav />
       <Navbar />
       <div
-        className="relative lg:mt-24 mt-16  w-full lg:h-[440px] h-[80vh] bg-cover bg-center "
+        className="relative lg:mt-24 mt-16  w-full lg:h-[440px] h-[80vh] bg-cover bg-center bg-fixed "
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -36,7 +36,7 @@ const Home = () => {
               Vegetarian Delights.
             </p>
             <div className="flex lg:flex-row flex-col items-center font-semibold text-[#376D5C] justify-center gap-4">
-              <Button text={"Book Now"} />
+              <Button text={"Book Now"} className={"bg-white border-none"} />
               {/* <button className="px-12 py-3 text-white font-semibold  rounded-3xl border-2">
                 Know More
               </button> */}
